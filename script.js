@@ -40,10 +40,14 @@ function drawPaddle() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
-    if (y < ballRadius || y > canvas.height-ballRadius) {
+    if (y < ballRadius) {
         dy = -dy;
     } else if (x < ballRadius || x > canvas.width-ballRadius) {
         dx = -dx;
+    } else if (y > canvas.height-ballRadius) {
+        alert("GAME OVER");
+        document.location.reload();
+        clearInterval(interval);
     }
 
     x += dx;
@@ -86,4 +90,4 @@ function keyUpHandler(e) {
 }
 
 
-setInterval(draw, 10);
+var interval = setInterval(draw, 10);
